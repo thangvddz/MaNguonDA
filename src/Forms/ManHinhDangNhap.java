@@ -32,7 +32,11 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
         jLabel1.setText("username");
 
+        txtUsername.setText("NV01");
+
         jLabel2.setText("password");
+
+        txtPassword.setText("123456");
 
         btnCanel.setText("Canel");
         btnCanel.addActionListener(new java.awt.event.ActionListener() {
