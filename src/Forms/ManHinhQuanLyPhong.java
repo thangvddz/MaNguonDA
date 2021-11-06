@@ -5,18 +5,26 @@
  */
 package Forms;
 
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.border.Border;
 
 /**
  *
@@ -44,40 +52,35 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jpnAreaRoomMap = new javax.swing.JPanel();
         jButton41 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jpnAreaRoomMapLayout = new javax.swing.GroupLayout(jpnAreaRoomMap);
-        jpnAreaRoomMap.setLayout(jpnAreaRoomMapLayout);
-        jpnAreaRoomMapLayout.setHorizontalGroup(
-            jpnAreaRoomMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 861, Short.MAX_VALUE)
-        );
-        jpnAreaRoomMapLayout.setVerticalGroup(
-            jpnAreaRoomMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-        );
-
+        jpnAreaRoomMap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jpnAreaRoomMap.setLayout(new javax.swing.BoxLayout(jpnAreaRoomMap, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2.setViewportView(jpnAreaRoomMap);
 
-        jButton41.setText("Tao So Do Phong");
+        jButton41.setText("Tạo sơ đồ phòng");
         jButton41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton41ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("TaoPhong");
+        jButton1.setText("Tạo phòng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Số Tầng");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 51, 255)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,25 +88,32 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton41)
-                .addGap(79, 79, 79)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 377, Short.MAX_VALUE)
+                        .addComponent(jButton41)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1)
+                        .addGap(238, 238, 238))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton41)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -132,10 +142,10 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
         JTextField yField = new JTextField(5);
 
         JPanel myPanel = new JPanel();
-        myPanel.add(new JLabel("soTang:"));
+        myPanel.add(new JLabel("Nhập số tầng:"));
         myPanel.add(xField);
         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-        myPanel.add(new JLabel("soPhong:"));
+        myPanel.add(new JLabel("Nhập số phòng trên 1 tầng:"));
         myPanel.add(yField);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
@@ -145,135 +155,221 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
             soTang = Integer.parseInt(xField.getText());
             System.out.println("x value: " + xField.getText());
             System.out.println("y value: " + yField.getText());
+            createMapRoom(soTang, soPhong);
         }
     }
 
+    public void createMapRoom(int floors, int rooms) {
+//        int arr_numRoom[][] = new int[rooms][floors];
+//        
+//        ArrayList<JPanel> tang = new ArrayList<>();
+//        for (JPanel jPanel : tang) {
+//            jPanel.add(new JPanel());
+//        }
+
+        Border outline = BorderFactory.createLineBorder(Color.black);
+        jpnAreaRoomMap.setLayout(new BoxLayout(jpnAreaRoomMap, BoxLayout.Y_AXIS));
+        for (int i = 0; i < floors; i++) {
+            JPanel tang = new JPanel();
+            tang.setPreferredSize(new Dimension(1000, 100));
+            tang.setLayout(new BoxLayout(tang, BoxLayout.X_AXIS));
+            tang.setAlignmentX(Component.LEFT_ALIGNMENT);
+            tang.setBorder(outline);
+
+            JLabel lbl = new JLabel("Tang " + (i + 1));
+            lbl.setBorder(outline);
+            tang.add(lbl);
+            JToolBar jtb = new JToolBar();
+            tang.add(jtb);
+            for (int j = 0; j < rooms; j++) {
+                jtb.add(new JButton("Phong " + (i+1)));
+            }
+            jpnAreaRoomMap.add(tang);
+            jpnAreaRoomMap.revalidate();
+        }
+
+    }
+
     public void createFloor(int floors, int rooms) {
-        
-        
-        GridBagLayout layout = new GridBagLayout();
-        jpnAreaRoomMap.setLayout(layout);
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        JLabel lbl1 = new JLabel("Tang 1");
-        lbl1.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl1, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        JToolBar tang1 = new JToolBar();
-        tang1.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang1, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        JLabel lbl2 = new JLabel("Tang 2");
-        lbl2.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl2, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        JToolBar tang2 = new JToolBar();
-        tang2.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang2, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        JLabel lbl3 = new JLabel("Tang 3");
-        lbl3.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl3, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        JToolBar tang3 = new JToolBar();
-        tang3.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang3, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        JLabel lbl4 = new JLabel("Tang 4");
-        lbl4.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl4, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        JToolBar tang4 = new JToolBar();
-        tang4.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang4, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        JLabel lbl5 = new JLabel("Tang 5");
-        lbl5.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl5, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        JToolBar tang5 = new JToolBar();
-        tang5.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang5, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        JLabel lbl6 = new JLabel("Tang 6");
-        lbl6.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(lbl6, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        JToolBar tang6 = new JToolBar();
-        tang6.setPreferredSize(new Dimension(100, 100));
-        jpnAreaRoomMap.add(tang6, gbc);
-        
-//        JLabel title1 = new JLabel();
-//        title1.setText("Floor 1");
-//        title1.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title1);
+
+        Border outline = BorderFactory.createLineBorder(Color.black);
+        JPanel j1 = new JPanel();
+        JPanel j2 = new JPanel();
+        JPanel j3 = new JPanel();
+        JPanel j4 = new JPanel();
+        JPanel j5 = new JPanel();
+        JPanel j6 = new JPanel();
+        JPanel j7 = new JPanel();
+        JPanel j8 = new JPanel();
+
+        j1.setPreferredSize(new Dimension(1000, 100));
+        j2.setPreferredSize(new Dimension(100, 200));
+        j3.setPreferredSize(new Dimension(100, 200));
+        j4.setPreferredSize(new Dimension(100, 200));
+
+        j1.setLayout(new BoxLayout(j1, BoxLayout.X_AXIS));
+        j2.setLayout(new BoxLayout(j2, BoxLayout.X_AXIS));
+        j3.setLayout(new BoxLayout(j3, BoxLayout.X_AXIS));
+        j4.setLayout(new BoxLayout(j4, BoxLayout.X_AXIS));
+        j5.setLayout(new BoxLayout(j5, BoxLayout.X_AXIS));
+        j6.setLayout(new BoxLayout(j6, BoxLayout.X_AXIS));
+        j7.setLayout(new BoxLayout(j7, BoxLayout.X_AXIS));
+        j8.setLayout(new BoxLayout(j8, BoxLayout.X_AXIS));
+
+        JLabel lbl1 = new JLabel("Button 1");
+        lbl1.setBorder(outline);
+        j1.add(lbl1);
+        j2.add(new JButton("Nut 2"));
+        j3.add(new JButton("Nut 3"));
+        j4.add(new JButton("Nut 4"));
+        j5.add(new JButton("Nut 5"));
+        j6.add(new JButton("Nut 6"));
+        j7.add(new JButton("Nut 7"));
+        j8.add(new JButton("Nut 8"));
+
+        JToolBar jtb1 = new JToolBar();
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        jtb1.add(new JButton("Hello"));
+        j1.add(jtb1);
+
+        JToolBar jtb2 = new JToolBar();
+        jtb2.add(new JButton("Hello"));
+        j2.add(jtb2);
+
+        JToolBar jtb3 = new JToolBar();
+        jtb3.add(new JButton("Hello"));
+        j3.add(jtb3);
+
+        JToolBar jtb4 = new JToolBar();
+        jtb4.add(new JButton("Hello"));
+        j4.add(jtb4);
+
+        JToolBar jtb5 = new JToolBar();
+        jtb5.add(new JButton("Hello"));
+        j5.add(jtb5);
+
+        JToolBar jtb6 = new JToolBar();
+        jtb6.add(new JButton("Hello"));
+        j6.add(jtb6);
+
+        JToolBar jtb7 = new JToolBar();
+        jtb7.add(new JButton("Hello"));
+        j7.add(jtb7);
+
+        JToolBar jtb8 = new JToolBar();
+        jtb8.add(new JButton("Hello"));
+        j8.add(jtb8);
+
+        jpnAreaRoomMap.setLayout(new BoxLayout(jpnAreaRoomMap, BoxLayout.Y_AXIS));
+        jpnAreaRoomMap.add(j1);
+        jpnAreaRoomMap.add(j2);
+        jpnAreaRoomMap.add(j3);
+        jpnAreaRoomMap.add(j4);
+        jpnAreaRoomMap.add(j5);
+        jpnAreaRoomMap.add(j6);
+        jpnAreaRoomMap.add(j7);
+        jpnAreaRoomMap.add(j8);
+
+//        GridBagLayout layout = new GridBagLayout();
+//
+//        jpnAreaRoomMap.setLayout(layout);
+//
+//        GridBagConstraints gbc = new GridBagConstraints();
+//        JLabel lbl1 = new JLabel("Tang 1");
+//        lbl1.setPreferredSize(new Dimension(100, 100));
+//        lbl1.setBorder(outline);
+//        gbc.fill = GridBagConstraints.HORIZONTAL;
+//        gbc.weightx = 1;
+//        gbc.weighty = 1;
+//        gbc.gridx = 0;
+//        gbc.gridy = 0;
+//        gbc.gridwidth = 1;
+//        gbc.gridheight = 1;
+//        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+//        jpnAreaRoomMap.add(lbl1, gbc);
+//        gbc.gridx = 1;
+//        gbc.gridy = 0;
+//        
 //        JToolBar tang1 = new JToolBar();
-//        jpnAreaRoomMap.add(tang1);
-//        //---------------------
-//        JLabel title2 = new JLabel();
-//        title2.setText("Floor 2");
-//        title2.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title2);
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        tang1.add(new JButton("Button1"));
+//        
+//        tang1.setPreferredSize(new Dimension(100, 100));
+//        jpnAreaRoomMap.add(tang1, gbc);
+//        gbc.fill = GridBagConstraints.HORIZONTAL;
+//        gbc.gridx = 0;
+//        gbc.gridy = 1;
+//        JLabel lbl2 = new JLabel("Tang 2");
+//        lbl2.setPreferredSize(new Dimension(100, 100));
+//        jpnAreaRoomMap.add(lbl2, gbc);
+//        gbc.gridx = 1;
+//        gbc.gridy = 1;
 //        JToolBar tang2 = new JToolBar();
-//        jpnAreaRoomMap.add(tang2);
-//        //---------------------
-//        JLabel title3 = new JLabel();
-//        title3.setText("Floor 3");
-//        title3.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title3);
-//        JToolBar tang3 = new JToolBar();
-//        jpnAreaRoomMap.add(tang3);
-//        //---------------------
-//        JLabel title4 = new JLabel();
-//        title4.setText("Floor 4");
-//        title4.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title4);
-//        JToolBar tang4 = new JToolBar();
-//        jpnAreaRoomMap.add(tang4);
-//        //---------------------
-//        JLabel title5 = new JLabel();
-//        title5.setText("Floor 5");
-//        title5.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title5);
-//        JToolBar tang5 = new JToolBar();
-//        jpnAreaRoomMap.add(tang5);
-//        //---------------------
-//        JLabel title6 = new JLabel();
-//        title6.setText("Floor 6");
-//        title6.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(title6);
-//        JToolBar tang6 = new JToolBar();
-//        jpnAreaRoomMap.add(tang6);
+//        tang2.setPreferredSize(new Dimension(100, 100));
+//        jpnAreaRoomMap.add(tang2, gbc);
+    }
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ManHinhChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ManHinhChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ManHinhChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ManHinhChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ManHinhQuanLyPhong().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton41;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpnAreaRoomMap;
     // End of variables declaration//GEN-END:variables
