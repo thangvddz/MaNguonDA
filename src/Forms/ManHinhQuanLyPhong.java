@@ -5,6 +5,7 @@
  */
 package Forms;
 
+import Utils.XImage;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -13,10 +14,14 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -24,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 /**
@@ -34,6 +40,8 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
 
     public static int soTang;
     public static int soPhong;
+    public static int widthContainer;
+    public static int heightContainer;
     public static int RoomMap[][];
 
     public ManHinhQuanLyPhong() {
@@ -126,12 +134,14 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        createFloor(6, 7);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void init() {
         soPhong = 0;
         soTang = 0;
+        widthContainer = 100;
+        heightContainer = 100;
     }
 
     /**
@@ -167,171 +177,51 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
 //            jPanel.add(new JPanel());
 //        }
 
-        Border outline = BorderFactory.createLineBorder(Color.black);
+        Border outline = BorderFactory.createLineBorder(Color.BLACK);
         jpnAreaRoomMap.setLayout(new BoxLayout(jpnAreaRoomMap, BoxLayout.Y_AXIS));
         for (int i = 0; i < floors; i++) {
+            // khoi tao jpanel chua jlabel va jtoolbar
             JPanel tang = new JPanel();
             tang.setPreferredSize(new Dimension(1000, 100));
             tang.setLayout(new BoxLayout(tang, BoxLayout.X_AXIS));
             tang.setAlignmentX(Component.LEFT_ALIGNMENT);
             tang.setBorder(outline);
 
-            JLabel lbl = new JLabel("Tang " + (i + 1));
-            lbl.setBorder(outline);
-            tang.add(lbl);
+            // khoi tao JLabel sau do them vao Jpanel
+            JLabel lblTenTang = new JLabel("Tang " + (i + 1), SwingConstants.CENTER);
+            lblTenTang.setPreferredSize(new Dimension(100, 100));
+            lblTenTang.setBorder(outline);
+            tang.add(lblTenTang);
+
+            // khoi tao JToolBar sau do them vao Jpanel
             JToolBar jtb = new JToolBar();
+
             tang.add(jtb);
+
+            // Them Button phong vao jToolBar
             for (int j = 0; j < rooms; j++) {
-                jtb.add(new JButton("Phong " + (i+1)));
+                JButton room = new JButton("Phong " + (i + 1));
+                room.setPreferredSize(new Dimension(100, 100));
+                room.addMouseListener(new MouseClik());
+                jtb.add(room);
             }
+            JButton room = new JButton("+");
+            room.setPreferredSize(new Dimension(100, 100));
+            room.addMouseListener(new MouseClik());
+            jtb.add(room);
+            // Them Jpanel tang vao trong Jpanel jpnAreaRoomMap
             jpnAreaRoomMap.add(tang);
             jpnAreaRoomMap.revalidate();
         }
 
     }
 
-    public void createFloor(int floors, int rooms) {
+    public class MouseClik extends MouseAdapter {
 
-        Border outline = BorderFactory.createLineBorder(Color.black);
-        JPanel j1 = new JPanel();
-        JPanel j2 = new JPanel();
-        JPanel j3 = new JPanel();
-        JPanel j4 = new JPanel();
-        JPanel j5 = new JPanel();
-        JPanel j6 = new JPanel();
-        JPanel j7 = new JPanel();
-        JPanel j8 = new JPanel();
+        @Override
+        public void mouseClicked(MouseEvent me) {
 
-        j1.setPreferredSize(new Dimension(1000, 100));
-        j2.setPreferredSize(new Dimension(100, 200));
-        j3.setPreferredSize(new Dimension(100, 200));
-        j4.setPreferredSize(new Dimension(100, 200));
-
-        j1.setLayout(new BoxLayout(j1, BoxLayout.X_AXIS));
-        j2.setLayout(new BoxLayout(j2, BoxLayout.X_AXIS));
-        j3.setLayout(new BoxLayout(j3, BoxLayout.X_AXIS));
-        j4.setLayout(new BoxLayout(j4, BoxLayout.X_AXIS));
-        j5.setLayout(new BoxLayout(j5, BoxLayout.X_AXIS));
-        j6.setLayout(new BoxLayout(j6, BoxLayout.X_AXIS));
-        j7.setLayout(new BoxLayout(j7, BoxLayout.X_AXIS));
-        j8.setLayout(new BoxLayout(j8, BoxLayout.X_AXIS));
-
-        JLabel lbl1 = new JLabel("Button 1");
-        lbl1.setBorder(outline);
-        j1.add(lbl1);
-        j2.add(new JButton("Nut 2"));
-        j3.add(new JButton("Nut 3"));
-        j4.add(new JButton("Nut 4"));
-        j5.add(new JButton("Nut 5"));
-        j6.add(new JButton("Nut 6"));
-        j7.add(new JButton("Nut 7"));
-        j8.add(new JButton("Nut 8"));
-
-        JToolBar jtb1 = new JToolBar();
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        jtb1.add(new JButton("Hello"));
-        j1.add(jtb1);
-
-        JToolBar jtb2 = new JToolBar();
-        jtb2.add(new JButton("Hello"));
-        j2.add(jtb2);
-
-        JToolBar jtb3 = new JToolBar();
-        jtb3.add(new JButton("Hello"));
-        j3.add(jtb3);
-
-        JToolBar jtb4 = new JToolBar();
-        jtb4.add(new JButton("Hello"));
-        j4.add(jtb4);
-
-        JToolBar jtb5 = new JToolBar();
-        jtb5.add(new JButton("Hello"));
-        j5.add(jtb5);
-
-        JToolBar jtb6 = new JToolBar();
-        jtb6.add(new JButton("Hello"));
-        j6.add(jtb6);
-
-        JToolBar jtb7 = new JToolBar();
-        jtb7.add(new JButton("Hello"));
-        j7.add(jtb7);
-
-        JToolBar jtb8 = new JToolBar();
-        jtb8.add(new JButton("Hello"));
-        j8.add(jtb8);
-
-        jpnAreaRoomMap.setLayout(new BoxLayout(jpnAreaRoomMap, BoxLayout.Y_AXIS));
-        jpnAreaRoomMap.add(j1);
-        jpnAreaRoomMap.add(j2);
-        jpnAreaRoomMap.add(j3);
-        jpnAreaRoomMap.add(j4);
-        jpnAreaRoomMap.add(j5);
-        jpnAreaRoomMap.add(j6);
-        jpnAreaRoomMap.add(j7);
-        jpnAreaRoomMap.add(j8);
-
-//        GridBagLayout layout = new GridBagLayout();
-//
-//        jpnAreaRoomMap.setLayout(layout);
-//
-//        GridBagConstraints gbc = new GridBagConstraints();
-//        JLabel lbl1 = new JLabel("Tang 1");
-//        lbl1.setPreferredSize(new Dimension(100, 100));
-//        lbl1.setBorder(outline);
-//        gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.weightx = 1;
-//        gbc.weighty = 1;
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        gbc.gridwidth = 1;
-//        gbc.gridheight = 1;
-//        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-//        jpnAreaRoomMap.add(lbl1, gbc);
-//        gbc.gridx = 1;
-//        gbc.gridy = 0;
-//        
-//        JToolBar tang1 = new JToolBar();
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        tang1.add(new JButton("Button1"));
-//        
-//        tang1.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(tang1, gbc);
-//        gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.gridx = 0;
-//        gbc.gridy = 1;
-//        JLabel lbl2 = new JLabel("Tang 2");
-//        lbl2.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(lbl2, gbc);
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        JToolBar tang2 = new JToolBar();
-//        tang2.setPreferredSize(new Dimension(100, 100));
-//        jpnAreaRoomMap.add(tang2, gbc);
+        }
     }
 
     public static void main(String args[]) {
