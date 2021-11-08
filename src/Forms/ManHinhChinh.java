@@ -57,18 +57,30 @@ public class ManHinhChinh extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton14 = new javax.swing.JButton();
-        jToolBar4 = new javax.swing.JToolBar();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jButton24 = new javax.swing.JButton();
+        jToolBar5 = new javax.swing.JToolBar();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        jButton29 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
+        jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jButton34 = new javax.swing.JButton();
+        jToolBar6 = new javax.swing.JToolBar();
+        jButton35 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jButton38 = new javax.swing.JButton();
+        jButton39 = new javax.swing.JButton();
+        jButton40 = new javax.swing.JButton();
+        jButton41 = new javax.swing.JButton();
+        jButton42 = new javax.swing.JButton();
+        jButton43 = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
@@ -177,70 +189,75 @@ public class ManHinhChinh extends javax.swing.JFrame {
         jToolBar1.add(jButton9);
 
         java.awt.GridBagLayout jPanel1Layout1 = new java.awt.GridBagLayout();
-        jPanel1Layout1.columnWidths = new int[] {1};
+        jPanel1Layout1.columnWidths = new int[] {0};
         jPanel1Layout1.rowHeights = new int[] {0};
         jPanel1.setLayout(jPanel1Layout1);
 
-        jButton14.setText("jButton14");
-        jPanel4.add(jButton14);
+        jButton24.setText("jButton14");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton24);
 
-        jToolBar4.setRollover(true);
+        jToolBar5.setRollover(true);
 
-        jButton15.setText("jButton15");
-        jButton15.setFocusable(false);
-        jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton15);
+        jButton25.setText("jButton15");
+        jButton25.setFocusable(false);
+        jButton25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton25.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton25);
 
-        jButton16.setText("jButton15");
-        jButton16.setFocusable(false);
-        jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton16);
+        jButton26.setText("jButton15");
+        jButton26.setFocusable(false);
+        jButton26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton26.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton26);
 
-        jButton17.setText("jButton15");
-        jButton17.setFocusable(false);
-        jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton17);
+        jButton27.setText("jButton15");
+        jButton27.setFocusable(false);
+        jButton27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton27.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton27);
 
-        jButton18.setText("jButton15");
-        jButton18.setFocusable(false);
-        jButton18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton18);
+        jButton28.setText("jButton15");
+        jButton28.setFocusable(false);
+        jButton28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton28.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton28);
 
-        jButton19.setText("jButton15");
-        jButton19.setFocusable(false);
-        jButton19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton19);
+        jButton29.setText("jButton15");
+        jButton29.setFocusable(false);
+        jButton29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton29.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton29);
 
-        jButton20.setText("jButton15");
-        jButton20.setFocusable(false);
-        jButton20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton20.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton20);
+        jButton30.setText("jButton15");
+        jButton30.setFocusable(false);
+        jButton30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton30.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton30);
 
-        jButton21.setText("jButton15");
-        jButton21.setFocusable(false);
-        jButton21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton21);
+        jButton31.setText("jButton15");
+        jButton31.setFocusable(false);
+        jButton31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton31.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton31);
 
-        jButton22.setText("jButton15");
-        jButton22.setFocusable(false);
-        jButton22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton22.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton22);
+        jButton32.setText("jButton15");
+        jButton32.setFocusable(false);
+        jButton32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton32.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton32);
 
-        jButton23.setText("jButton15");
-        jButton23.setFocusable(false);
-        jButton23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton23.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar4.add(jButton23);
+        jButton33.setText("jButton15");
+        jButton33.setFocusable(false);
+        jButton33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton33.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(jButton33);
 
-        jPanel4.add(jToolBar4);
+        jPanel5.add(jToolBar5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -248,7 +265,76 @@ public class ManHinhChinh extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel4, gridBagConstraints);
+        jPanel1.add(jPanel5, gridBagConstraints);
+
+        jButton34.setText("jButton14");
+        jPanel6.add(jButton34);
+
+        jToolBar6.setRollover(true);
+
+        jButton35.setText("jButton15");
+        jButton35.setFocusable(false);
+        jButton35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton35.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton35);
+
+        jButton36.setText("jButton15");
+        jButton36.setFocusable(false);
+        jButton36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton36);
+
+        jButton37.setText("jButton15");
+        jButton37.setFocusable(false);
+        jButton37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton37);
+
+        jButton38.setText("jButton15");
+        jButton38.setFocusable(false);
+        jButton38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton38);
+
+        jButton39.setText("jButton15");
+        jButton39.setFocusable(false);
+        jButton39.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton39.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton39);
+
+        jButton40.setText("jButton15");
+        jButton40.setFocusable(false);
+        jButton40.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton40.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton40);
+
+        jButton41.setText("jButton15");
+        jButton41.setFocusable(false);
+        jButton41.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton41);
+
+        jButton42.setText("jButton15");
+        jButton42.setFocusable(false);
+        jButton42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton42);
+
+        jButton43.setText("jButton15");
+        jButton43.setFocusable(false);
+        jButton43.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton43.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar6.add(jButton43);
+
+        jPanel6.add(jToolBar6);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jPanel6, gridBagConstraints);
 
         jScrollPane4.setViewportView(jPanel1);
 
@@ -304,6 +390,10 @@ public class ManHinhChinh extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton24ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,18 +434,28 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
+    private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton40;
+    private javax.swing.JButton jButton41;
+    private javax.swing.JButton jButton42;
+    private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -371,13 +471,15 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar4;
+    private javax.swing.JToolBar jToolBar5;
+    private javax.swing.JToolBar jToolBar6;
     // End of variables declaration//GEN-END:variables
 }

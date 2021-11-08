@@ -25,7 +25,7 @@ public class JdbcHelper {
     public JdbcHelper() {
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=DA1_N8_V1;"
+            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=DA1_N8_V3;"
                     + "username=sa;password=a");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("ket noi that bai");
