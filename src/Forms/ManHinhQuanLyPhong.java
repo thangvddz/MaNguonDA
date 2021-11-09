@@ -54,11 +54,12 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
     public static List<JButton[]> lsJbutton;
     PhongDAO dao;
     TangDAO tangDao;
-    GridBagConstraints gbc;
+    public static GridBagConstraints gbc;
 
     public ManHinhQuanLyPhong() {
         initComponents();
         setTitle("Quan ly phong khach san");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         init();
     }
@@ -75,11 +76,10 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
         jspMapRoom = new javax.swing.JScrollPane();
         jpnAreaRoomMap = new javax.swing.JPanel();
         btnQuickCreate = new javax.swing.JButton();
-        btnTaoTang = new javax.swing.JButton();
         blbFloorNum = new javax.swing.JLabel();
         sldSize = new javax.swing.JSlider();
         lblSize = new javax.swing.JLabel();
-        btnReset = new javax.swing.JButton();
+        btnLamMoi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,13 +91,6 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
         btnQuickCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuickCreateActionPerformed(evt);
-            }
-        });
-
-        btnTaoTang.setText("Thêm Tầng");
-        btnTaoTang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaoTangActionPerformed(evt);
             }
         });
 
@@ -121,10 +114,10 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
         lblSize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSize.setText("100");
 
-        btnReset.setText("Tạo lại toàn bộ phòng");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
+        btnLamMoi.setText("Làm mới");
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnLamMoiActionPerformed(evt);
             }
         });
 
@@ -135,42 +128,39 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnQuickCreate)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnTaoTang, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(953, 953, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(blbFloorNum, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jspMapRoom)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(sldSize, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblSize, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(31, 31, 31))))
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnQuickCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(blbFloorNum, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnQuickCreate)
-                    .addComponent(btnTaoTang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(blbFloorNum, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jspMapRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sldSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnReset))
+                    .addComponent(btnLamMoi)
+                    .addComponent(btnQuickCreate))
+                .addGap(1, 1, 1)
+                .addComponent(blbFloorNum, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspMapRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sldSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -179,30 +169,29 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
 
     private void btnQuickCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuickCreateActionPerformed
         // TODO add your handling code here:
-
+        FormTaoMapNhanh f = new FormTaoMapNhanh();
+        f.setVisible(true);
     }//GEN-LAST:event_btnQuickCreateActionPerformed
-
-    private void btnTaoTangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoTangActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnTaoTangActionPerformed
 
     private void sldSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldSizeStateChanged
         // TODO add your handling code here:
-//        widthContainer = sldSize.getValue();
-//        lblSize.setText(widthContainer + " %");
-//        jpnAreaRoomMap.removeAll();
-//        FillRoomToScreen();
-//        CreateRoomStatusMap.createMapRoom(jpnAreaRoomMap,gbc, soTang, soPhong);
+        widthContainer = sldSize.getValue();
+        heightContainer = sldSize.getValue();
+        lblSize.setText(widthContainer + " %");
+        jpnAreaRoomMap.removeAll();
+        jpnAreaRoomMap.repaint();
+        FillRoomToScreen();
     }//GEN-LAST:event_sldSizeStateChanged
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetActionPerformed
+        jpnAreaRoomMap.removeAll();
+        FillRoomToScreen();
+    }//GEN-LAST:event_btnLamMoiActionPerformed
 
     public void init() {
         posTang = 0;
-        posPhong=0;
+        posPhong = 0;
         soPhong = 0;
         soTang = 0;
         widthContainer = 100;
@@ -216,34 +205,24 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
         FillRoomToScreen();
     }
 
-    public void insert() {
-    }
-
-    public void update() {
-    }
-
-    public void delete() {
-    }
-
-    public void select() {
-        lsPhong = dao.selectAll();
-        soTang = tangDao.selectAll().size();
-
-    }
-
     // tao so do phong voi co so du lieu san co vao jpanel jpnAreaRoomMap
     public void FillRoomToScreen() {
-
         setBox();
         List<Integer> ls = dao.RoomPerFloor();
-        for (int i = 0; i < ls.size(); i++) {
-            CreateRoomStatusMap.createMapRoom(jpnAreaRoomMap, gbc, i, ls.get(i));
-            jpnAreaRoomMap.revalidate();
+        if (ls != null) {
+            for (int i = 0; i < ls.size(); i++) {
+                CreateRoomStatusMap.createMapRoom(jpnAreaRoomMap, gbc, i, ls.get(i));
+                jpnAreaRoomMap.revalidate();
+            }
         }
     }
 
+//    public boolean checkEmt(){
+//        
+//    }
+    
     // setlayout cho jpnAreaRoomMap
-    public void setBox() {
+    public static void setBox() {
         jpnAreaRoomMap.setLayout(new GridBagLayout());
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 1;
@@ -284,10 +263,9 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel blbFloorNum;
+    private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnQuickCreate;
-    private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnTaoTang;
-    private javax.swing.JPanel jpnAreaRoomMap;
+    public static javax.swing.JPanel jpnAreaRoomMap;
     private javax.swing.JScrollPane jspMapRoom;
     private javax.swing.JLabel lblSize;
     private javax.swing.JSlider sldSize;

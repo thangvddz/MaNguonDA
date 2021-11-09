@@ -5,17 +5,36 @@
  */
 package Forms;
 
+import Entities.LoaiPhong;
+import Entities.Phong;
+import Entities.Tang;
+import Entities.TrangThai;
+import Models.LoaiPhongDAO;
+import Models.PhongDAO;
+import Models.TangDAO;
+import Models.TrangThaiDAO;
+import Utils.CreateRoomStatusMap;
+import Utils.mgsBox;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author you have to better
  */
 public class FormTaoMapNhanh extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormTaoMapNhanh
-     */
+    TrangThaiDAO trangThaiDao;
+    PhongDAO phongDao;
+    LoaiPhongDAO loaiPhongDao;
+    TangDAO tangDao;
+
     public FormTaoMapNhanh() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Tạo map nhanh");
+        setLocationRelativeTo(null);
+        init();
     }
 
     /**
@@ -27,10 +46,23 @@ public class FormTaoMapNhanh extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSoTang = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTongPhong = new javax.swing.JTextField();
+        btnTao = new javax.swing.JButton();
+        btnHuyBo = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cboTrangThai = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtSoPhongBD = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cboLoaiPhong = new javax.swing.JComboBox<>();
+        txtGhiChu = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,19 +70,62 @@ public class FormTaoMapNhanh extends javax.swing.JFrame {
 
         jLabel2.setText("Nhập tổng số phòng:");
 
+        btnTao.setText("Tạo");
+        btnTao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoActionPerformed(evt);
+            }
+        });
+
+        btnHuyBo.setText("Hủy bỏ");
+        btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyBoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Trạng thái phòng:");
+
+        jLabel5.setText("Nhập mã số phòng bắt đầu:");
+
+        jLabel6.setText("Loại phòng");
+
+        jLabel7.setText("ghi chú");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(btnTao, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnHuyBo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSoPhongBD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSoTang, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTongPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
@@ -59,56 +134,136 @@ public class FormTaoMapNhanh extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSoTang, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addComponent(txtTongPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoPhongBD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHuyBo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHuyBoActionPerformed
+
+    private void btnTaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoActionPerformed
+        // TODO add your handling code here:
+        createMapQuick();
+    }//GEN-LAST:event_btnTaoActionPerformed
+
+    public void init() {
+        trangThaiDao = new TrangThaiDAO();
+        phongDao = new PhongDAO();
+        loaiPhongDao = new LoaiPhongDAO();
+        tangDao = new TangDAO();
+        fillComboboxTrangThai();
+        fillComboboxLoaiPhong();
+    }
+
+    public void createMapQuick() {
+        if (mgsBox.confirm(this, "Tạo mới sẽ khiến toàn bộ thông tin phòng hiện tại bị xóa. Bạn có chắc muốn tạo mới không?")) {
+            deleteRoomAll();
+            int start = Integer.parseInt(txtSoPhongBD.getText());
+            int end = Integer.parseInt(txtTongPhong.getText());
+            int soTangg = Integer.parseInt(txtSoTang.getText());
+            for (int i = 1; i <= soTangg; i++) {
+                tangDao.insert(new Tang(soTangg, null, true));
+            }
+
+            for (int i = 1; i <= soTangg; i++) {
+                for (int j = 1; j <= end; j++) {
+                    phongDao.insert(new Phong(start, i, cboLoaiPhong.getSelectedIndex() + 1, cboTrangThai.getSelectedIndex() + 1, txtGhiChu.getText()));
+                    start++;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormTaoMapNhanh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormTaoMapNhanh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormTaoMapNhanh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormTaoMapNhanh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            updateStatusScreen();
+            mgsBox.alert(this, "Tạo map thành công");
+            this.setVisible(false);
         }
-        //</editor-fold>
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormTaoMapNhanh().setVisible(true);
+    public void deleteRoomAll() {
+        if (phongDao.selectAll() != null && tangDao.selectAll() != null) {
+            int sophong = 0;
+            sophong = phongDao.selectAll().size();
+            int tang = 0;
+            tang = tangDao.selectAll().size();
+            for (int i = 0; i < tang; i++) {
+                for (int j = 0; j < sophong; j++) {
+                    phongDao.deletePhong(i + 1, j + 1);
+                }
             }
-        });
+            for (int i = 0; i < tang; i++) {
+                tangDao.delete(i + 1);
+            }
+        }
+    }
+
+    public void fillComboboxTrangThai() {
+        List<TrangThai> lsTT = trangThaiDao.selectAll();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTrangThai.getModel();
+        for (TrangThai trangThai : lsTT) {
+            model.addElement(trangThai.getTenTrangThai());
+        }
+    }
+
+    public void fillComboboxLoaiPhong() {
+        List<LoaiPhong> lsLoaiPhong = loaiPhongDao.selectAll();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiPhong.getModel();
+        for (LoaiPhong loaiPhong : lsLoaiPhong) {
+            model.addElement(loaiPhong.getTenLP());
+        }
+    }
+
+    public void updateStatusScreen() {
+        ManHinhQuanLyPhong.jpnAreaRoomMap.removeAll();
+        ManHinhQuanLyPhong.setBox();
+        List<Integer> ls = phongDao.RoomPerFloor();
+        for (int i = 0; i < ls.size(); i++) {
+            CreateRoomStatusMap.createMapRoom(ManHinhQuanLyPhong.jpnAreaRoomMap, ManHinhQuanLyPhong.gbc, i, ls.get(i));
+            ManHinhQuanLyPhong.jpnAreaRoomMap.revalidate();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHuyBo;
+    private javax.swing.JButton btnTao;
+    private javax.swing.JComboBox<String> cboLoaiPhong;
+    private javax.swing.JComboBox<String> cboTrangThai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField txtGhiChu;
+    private javax.swing.JTextField txtSoPhongBD;
+    private javax.swing.JTextField txtSoTang;
+    private javax.swing.JTextField txtTongPhong;
     // End of variables declaration//GEN-END:variables
 }

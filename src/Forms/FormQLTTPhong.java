@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Forms;
 
 import Entities.LoaiPhong;
+import Entities.Phong;
 import Entities.Tang;
 import Entities.ThongTinPhong;
 import Entities.TrangThai;
@@ -13,20 +9,19 @@ import Models.LoaiPhongDAO;
 import Models.PhongDAO;
 import Models.TangDAO;
 import Models.TrangThaiDAO;
+import Utils.CreateRoomStatusMap;
+import Utils.mgsBox;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author you have to better
- */
 public class FormQLTTPhong extends javax.swing.JFrame {
 
     PhongDAO phongDao;
     LoaiPhongDAO loaiPhongDao;
     TrangThaiDAO trangThaiDAO;
     ThongTinPhong thongTinChiTiet;
-    
+
     public FormQLTTPhong() {
         initComponents();
         setTitle("Thông tin chi tiết phòng");
@@ -65,12 +60,24 @@ public class FormQLTTPhong extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnUpdate.setText("Sửa Thông tin phòng");
+        btnUpdate.setEnabled(false);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Xóa Phòng");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Số Phòng");
 
         txtSoPhong.setEditable(false);
+        txtSoPhong.setEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -98,20 +105,37 @@ public class FormQLTTPhong extends javax.swing.JFrame {
         jLabel2.setText("Tầng");
 
         txtTang.setEditable(false);
+        txtTang.setEnabled(false);
 
         jLabel3.setText("Loại phòng");
 
         jLabel4.setText("Giá Phòng/ giờ");
 
-        txtGiaPhong.setEditable(false);
+        txtGiaPhong.setEnabled(false);
+
+        cboLoaiPhong.setEditable(true);
+        cboLoaiPhong.setEnabled(false);
+        cboLoaiPhong.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboLoaiPhongItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setText("Trạng thái");
 
+        cboTrangThai.setEditable(true);
+        cboTrangThai.setEnabled(false);
+
         chkSuaDoi.setText(" muốn sửa đổi");
+        chkSuaDoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSuaDoiActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Số giường");
 
-        txtSoGiuong.setEditable(false);
+        txtSoGiuong.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,10 +147,6 @@ public class FormQLTTPhong extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtSoPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -142,7 +162,11 @@ public class FormQLTTPhong extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(txtTang)))
+                                .addComponent(txtTang))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(txtSoPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkSuaDoi)
                             .addGroup(layout.createSequentialGroup()
@@ -201,39 +225,128 @@ public class FormQLTTPhong extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void init(){
+    private void chkSuaDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSuaDoiActionPerformed
+        // TODO add your handling code here:
+        UpdateStatus();
+    }//GEN-LAST:event_chkSuaDoiActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void cboLoaiPhongItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLoaiPhongItemStateChanged
+        // TODO add your handling code here:
+        int index = cboLoaiPhong.getSelectedIndex() + 1;
+
+//        System.out.println(String.valueOf(loaiPhongDao.selectById().getSoGiuong()));
+//        System.out.println(String.valueOf(loaiPhongDao.selectById().getGiaPhong()));
+        txtSoGiuong.setText(String.valueOf(loaiPhongDao.selectById(index).getSoGiuong()));
+        txtGiaPhong.setText(String.valueOf(loaiPhongDao.selectById(index).getGiaPhong()));
+    }//GEN-LAST:event_cboLoaiPhongItemStateChanged
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    public void init() {
         phongDao = new PhongDAO();
         loaiPhongDao = new LoaiPhongDAO();
         trangThaiDAO = new TrangThaiDAO();
-        thongTinChiTiet = (ThongTinPhong) phongDao.selectDetailById(ManHinhQuanLyPhong.posPhong-1, ManHinhQuanLyPhong.posTang-1);
-    }
-    
-    public void select(){
-        txtSoPhong.setText(String.valueOf(thongTinChiTiet.getMaPhong()));
-        txtTang.setText(String.valueOf(thongTinChiTiet.getSoTang()));
+        thongTinChiTiet = phongDao.selectDetailById(ManHinhQuanLyPhong.posPhong, ManHinhQuanLyPhong.posTang);
         fillComboboxLoaiPhong();
         fillComboboxTrangThai();
-        txtSoGiuong.setText(String.valueOf(thongTinChiTiet.getSoGiuong()));
-        txtGiaPhong.setText(String.valueOf(thongTinChiTiet.getGiaPhong()));
+        select();
     }
-    
-    public void fillComboboxLoaiPhong(){
+
+    public void select() {
+        txtSoPhong.setText(String.valueOf(thongTinChiTiet.getMaPhong()));
+        txtTang.setText(String.valueOf(thongTinChiTiet.getSoTang()));
+        cboLoaiPhong.setSelectedIndex(thongTinChiTiet.getMaLP() - 1);
+        cboTrangThai.setSelectedIndex(thongTinChiTiet.getMaTT() - 1);
+    }
+
+    public void fillComboboxLoaiPhong() {
         List<LoaiPhong> lsLoaiPhong = loaiPhongDao.selectAll();
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiPhong.getModel();
         for (LoaiPhong loaiPhong : lsLoaiPhong) {
             model.addElement(loaiPhong.getTenLP());
         }
-//        model.setSelectedItem();
     }
-    public void fillComboboxTrangThai(){
-        List<TrangThai> lsTT = loaiPhongDao.selectAll();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiPhong.getModel();
+
+    public void fillComboboxTrangThai() {
+        List<TrangThai> lsTT = trangThaiDAO.selectAll();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTrangThai.getModel();
         for (TrangThai trangThai : lsTT) {
             model.addElement(trangThai.getTenTrangThai());
         }
     }
-    
-    
+
+    public void update() {
+        if (ischeckNum(txtGiaPhong.getText().trim())) {
+            if (Integer.parseInt(txtSoGiuong.getText()) > 0) {
+                try {
+                    phongDao.update(new Phong(Integer.parseInt(txtSoPhong.getText()), Integer.parseInt(txtTang.getText()), cboLoaiPhong.getSelectedIndex() + 1, cboTrangThai.getSelectedIndex() + 1, null));
+                    mgsBox.alert(FormQLTTPhong.this, "Cập nhật thành công");
+                    this.setVisible(false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                mgsBox.alert(FormQLTTPhong.this, "So giuong khong hop le");
+            }
+        } else {
+            mgsBox.alert(FormQLTTPhong.this, "Gia phong khong hop le");
+        }
+    }
+
+    public void delete() {
+        if (mgsBox.confirm(FormQLTTPhong.this, "Bạn có chắc muốn xóa phòng " + ManHinhQuanLyPhong.posPhong + " không ?")) {
+            phongDao.deletePhong(ManHinhQuanLyPhong.posTang, ManHinhQuanLyPhong.posPhong);
+            mgsBox.alert(FormQLTTPhong.this, "Delete thành công");
+            this.setVisible(false);
+            updateStatusScreen();
+        }
+    }
+
+    public void updateStatusScreen() {
+        ManHinhQuanLyPhong.jpnAreaRoomMap.removeAll();
+        ManHinhQuanLyPhong.setBox();
+        List<Integer> ls = phongDao.RoomPerFloor();
+        for (int i = 0; i < ls.size(); i++) {
+            CreateRoomStatusMap.createMapRoom(ManHinhQuanLyPhong.jpnAreaRoomMap, ManHinhQuanLyPhong.gbc, i, ls.get(i));
+            ManHinhQuanLyPhong.jpnAreaRoomMap.revalidate();
+        }
+    }
+
+    public void UpdateStatus() {
+        if (chkSuaDoi.isSelected()) {
+            cboLoaiPhong.setEnabled(true);
+            cboTrangThai.setEnabled(true);
+            btnUpdate.setEnabled(true);
+        } else {
+            txtGiaPhong.setEnabled(false);
+            txtSoGiuong.setEnabled(false);
+            cboLoaiPhong.setEnabled(false);
+            cboTrangThai.setEnabled(false);
+            btnUpdate.setEnabled(false);
+        }
+    }
+
+    public boolean ischeckNum(String txt) {
+        try {
+            double n = Double.parseDouble(txt);
+            if (n <= 0) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;

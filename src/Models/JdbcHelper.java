@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +23,7 @@ public class JdbcHelper {
     public JdbcHelper() {
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=DA1_N8_V3;"
+            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=DA1_N8_V5;"
                     + "username=sa;password=a");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("ket noi that bai");

@@ -23,10 +23,11 @@ public class PhongDAO extends DAO<Phong, Integer> {
     private static final String SQL_SELECT_ALL = "SELECT * FROM PHONG";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM PHONG WHERE MaPhong=? AND SoTang=?";
     private static final String SQL_DELETE = "DELETE FROM PHONG WHERE MaPhong=? AND SoTang=?";
-    private static final String SQL_NUMBER_ROOM_PER_FLOOR="select TANG.SoTang, COUNT(PHONG.SoTang) as so_tang from TANG join PHONG on TANG.SoTang = PHONG.SoTang group by TANG.SoTang";
+    private static final String SQL_NUMBER_ROOM_PER_FLOOR = "select TANG.SoTang, COUNT(PHONG.SoTang) as so_tang from TANG join PHONG on TANG.SoTang = PHONG.SoTang group by TANG.SoTang";
     private static final String SQL_ROOMCODE_PER_FLOOR = "select * from PHONG where SoTang = ?";
-    private static final String SQL_SELECT_THONGTINPHONG_BY_ID = "select MaPhong, PHONG.SoTang, PHONG.MaLP, TenLP, giaPhong, SoGiuong, PHONG.MaTT from LOAIPHONG join PHONG on LOAIPHONG.MaLP = PHONG.MaLP join TANG on PHONG.SoTang = TANG.SoTang where MaPhong =116 and PHONG.SoTang=3";
-    
+    private static final String SQL_SELECT_THONGTINPHONG_BY_ID = "select MaPhong, PHONG.SoTang, PHONG.MaLP, TenLP, giaPhong, SoGiuong, PHONG.MaTT "
+            + "from LOAIPHONG join PHONG on LOAIPHONG.MaLP = PHONG.MaLP join TANG on PHONG.SoTang = TANG.SoTang where MaPhong=? and PHONG.SoTang=?";
+
     JdbcHelper jdbc;
 
     public PhongDAO() {
@@ -45,7 +46,11 @@ public class PhongDAO extends DAO<Phong, Integer> {
 
     @Override
     public void delete(Integer id) {
-        jdbc.update(SQL_DELETE, id);
+//        jdbc.update(SQL_DELETE, id);
+    }
+    
+    public void deletePhong(Integer idTang, Integer idPhong){
+        jdbc.update(SQL_DELETE, idPhong, idTang);
     }
 
     @Override
@@ -81,46 +86,48 @@ public class PhongDAO extends DAO<Phong, Integer> {
         }
         return ls;
     }
-    
+
     /**
      * Lay so Phong co tren moi tang
-     * @return list 
+     *
+     * @return list
      */
-    public List<Integer> RoomPerFloor(){
+    public List<Integer> RoomPerFloor() {
         List<Integer> ls = new ArrayList<>();
         try {
             ResultSet rs = jdbc.query(SQL_NUMBER_ROOM_PER_FLOOR);
-            while(rs.next()){
+            while (rs.next()) {
                 int num = rs.getInt(2);
                 ls.add(num);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        if(ls.isEmpty()){
+
+        if (ls.isEmpty()) {
             return null;
         }
         return ls;
     }
-    
+
     /**
      * lay mang ma so phong tren moi tang
+     *
      * @param tang
      * @return List
      */
-    public List<Phong> RoomCodePerFloor(Integer tang){
+    public List<Phong> RoomCodePerFloor(Integer tang) {
         return selectBySql(SQL_ROOMCODE_PER_FLOOR, tang);
     }
-    
+
     /**
-     * 
+     *
      * @param maP
      * @param soT
-     * @return 
+     * @return
      */
-    public List<ThongTinPhong> selectDetailById(Integer maP, Integer soT) {
-        List<ThongTinPhong> ls = new ArrayList<>();
+    public ThongTinPhong selectDetailById(Integer maP, Integer soT) {
+        ThongTinPhong thongTin = null;
         try {
             ResultSet rs = jdbc.query(SQL_SELECT_THONGTINPHONG_BY_ID, maP, soT);
 
@@ -132,15 +139,13 @@ public class PhongDAO extends DAO<Phong, Integer> {
                 double giaPhong = rs.getDouble(5);
                 int soGiuong = rs.getInt(6);
                 int MaTT = rs.getInt(7);
-                
-                ls.add(new ThongTinPhong(maPhong, soTang, loaiPhong, giaPhong, soGiuong, MaTT, tenLP));
+
+                thongTin = new ThongTinPhong(maPhong, soTang, loaiPhong, giaPhong, soGiuong, MaTT, tenLP);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        if (ls.isEmpty()) {
-            return null;
-        }
-        return ls;
+
+        return thongTin;
     }
 }
