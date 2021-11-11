@@ -20,6 +20,7 @@ public class PhongDAO extends DAO<Phong, Integer> {
 
     private static final String SQL_INSERT = "INSERT INTO PHONG(MaPhong, MaLP, SoTang, MaTT, ViTriPhong) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE PHONG SET MaLP=?, MaTT=?, ViTriPhong=? WHERE MaPhong=? AND SoTang=?";
+    private static final String SQL_UPDATE_TT = "UPDATE PHONG SET MaTT=? WHERE MaPhong=? AND SoTang=?";
     private static final String SQL_SELECT_ALL = "SELECT * FROM PHONG";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM PHONG WHERE MaPhong=? AND SoTang=?";
     private static final String SQL_DELETE = "DELETE FROM PHONG WHERE MaPhong=? AND SoTang=?";
@@ -43,6 +44,10 @@ public class PhongDAO extends DAO<Phong, Integer> {
     public void update(Phong entity) {
         jdbc.update(SQL_UPDATE, entity.getMaLoaiPhong(), entity.getMaTT(), entity.getViTriPhong(), entity.getMaPhong(), entity.getSoTang());
     }
+    
+    public void updateMaTT(Phong entity) {
+        jdbc.update(SQL_UPDATE_TT, entity.getMaTT(), entity.getMaPhong(), entity.getSoTang());
+    }
 
     @Override
     public void delete(Integer id) {
@@ -56,6 +61,10 @@ public class PhongDAO extends DAO<Phong, Integer> {
     @Override
     public Phong selectById(Integer id) {
         return selectBySql(SQL_SELECT_BY_ID, id).get(0);
+    }
+    
+    public Phong selectByIdd(int soTang, int soPhong) {
+        return selectBySql(SQL_SELECT_BY_ID, soPhong, soTang).get(0);
     }
 
     @Override

@@ -68,7 +68,7 @@ public class FormTaoMapNhanh extends javax.swing.JFrame {
 
         jLabel1.setText("Nhập số tầng:");
 
-        jLabel2.setText("Nhập tổng số phòng:");
+        jLabel2.setText("Nhập số phòng / tầng:");
 
         btnTao.setText("Tạo");
         btnTao.addActionListener(new java.awt.event.ActionListener() {

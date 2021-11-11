@@ -216,10 +216,6 @@ public class ManHinhQuanLyPhong extends javax.swing.JFrame {
             }
         }
     }
-
-//    public boolean checkEmt(){
-//        
-//    }
     
     // setlayout cho jpnAreaRoomMap
     public static void setBox() {
