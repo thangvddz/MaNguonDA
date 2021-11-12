@@ -68,7 +68,6 @@ public class LoaiPhongDAO extends DAO<LoaiPhong, Integer> {
                 ls.add(new LoaiPhong(MaLP, TenLP, SoGiuong, giaPhong));
             }
         } catch (SQLException ex) {
-            System.out.println("Error selectbySQL in NhanVienDao");
             ex.printStackTrace();
         }
         if (ls.isEmpty()) {

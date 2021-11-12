@@ -288,6 +288,7 @@ public class FormQLTTPhong extends javax.swing.JFrame {
             if (Integer.parseInt(txtSoGiuong.getText()) > 0) {
                 try {
                     phongDao.update(new Phong(Integer.parseInt(txtSoPhong.getText()), Integer.parseInt(txtTang.getText()), cboLoaiPhong.getSelectedIndex() + 1, cboTrangThai.getSelectedIndex() + 1, null));
+                    updateStatusScreen();
                     mgsBox.alert(FormQLTTPhong.this, "Cập nhật thành công");
                     this.setVisible(false);
                 } catch (Exception e) {

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class KhachHang {
 
-    String maKH;
+    int maKH;
     String soCMT;
     String HoTen;
     String soHoChieu;
@@ -25,7 +25,7 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String soCMT, String HoTen, String soHoChieu, String soDT, Date ngaySinh, String QueQuan, boolean gioiTinh) {
+    public KhachHang(int maKH, String soCMT, String HoTen, String soHoChieu, String soDT, Date ngaySinh, String QueQuan, boolean gioiTinh) {
         this.maKH = maKH;
         this.soCMT = soCMT;
         this.HoTen = HoTen;
@@ -36,11 +36,11 @@ public class KhachHang {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getMaKH() {
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 

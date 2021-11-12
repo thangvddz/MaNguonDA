@@ -21,6 +21,7 @@ public class PhongDAO extends DAO<Phong, Integer> {
     private static final String SQL_INSERT = "INSERT INTO PHONG(MaPhong, MaLP, SoTang, MaTT, ViTriPhong) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE PHONG SET MaLP=?, MaTT=?, ViTriPhong=? WHERE MaPhong=? AND SoTang=?";
     private static final String SQL_UPDATE_TT = "UPDATE PHONG SET MaTT=? WHERE MaPhong=? AND SoTang=?";
+    private static final String SQL_UPDATE_STATUS_3 = "UPDATE PHONG SET MaTT=1 WHERE MaTT=3";
     private static final String SQL_SELECT_ALL = "SELECT * FROM PHONG";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM PHONG WHERE MaPhong=? AND SoTang=?";
     private static final String SQL_DELETE = "DELETE FROM PHONG WHERE MaPhong=? AND SoTang=?";
@@ -47,6 +48,10 @@ public class PhongDAO extends DAO<Phong, Integer> {
     
     public void updateMaTT(Phong entity) {
         jdbc.update(SQL_UPDATE_TT, entity.getMaTT(), entity.getMaPhong(), entity.getSoTang());
+    }
+    
+    public void updateMaTT3() {
+        jdbc.update(SQL_UPDATE_STATUS_3);
     }
 
     @Override

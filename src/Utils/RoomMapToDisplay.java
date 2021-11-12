@@ -33,7 +33,7 @@ import javax.swing.border.Border;
  * @author you have to better
  */
 public class RoomMapToDisplay {
-    
+    private static final int DXLSTATUS = 3;
     public static void createMapRoom(JPanel box, GridBagConstraints gbc, int floors, int rooms) {
 
         PhongDAO dao = new PhongDAO();
@@ -84,7 +84,7 @@ public class RoomMapToDisplay {
                 } else if (numStatus == 2) {
                     room.setOpaque(true);
                     room.setBackground(Color.RED);
-                } else if (numStatus == 3) {
+                } else if (numStatus == DXLSTATUS) {
                     room.setOpaque(true);
                     room.setBackground(Color.PINK);
                 } else {
@@ -109,14 +109,14 @@ public class RoomMapToDisplay {
             ManHinhChinh.posPhong = (int) button.getClientProperty("Phong");
             System.out.println("Tang: " + ManHinhQuanLyPhong.posTang + ", Phong:" + ManHinhQuanLyPhong.posPhong);
             PhongDAO dao = new PhongDAO();
-            // nếu trạng thái đã là đang xử lý thì nó sẽ chuyển 
+            // nếu trạng thái đã là đang xử lý thì nó sẽ chuyển về trạng thái 1 (trạng thái sẵn sàng cho thuê phòng)
             ManHinhChinh.numStatus = dao.selectByIdd(ManHinhChinh.posTang, ManHinhChinh.posPhong).getMaTT();
-            if (ManHinhChinh.numStatus == 3) {
+            if (ManHinhChinh.numStatus == DXLSTATUS) {
                 dao.updateMaTT(new Phong(ManHinhChinh.posPhong, ManHinhChinh.posTang, 1, ManHinhChinh.numStatusBanDau, null));
                 updateStatusScreen();
             } else {
                 ManHinhChinh.numStatusBanDau = ManHinhChinh.numStatus;
-                dao.updateMaTT(new Phong(ManHinhChinh.posPhong, ManHinhChinh.posTang, 1, 3, null));
+                dao.updateMaTT(new Phong(ManHinhChinh.posPhong, ManHinhChinh.posTang, 1, DXLSTATUS, null));
                 updateStatusScreen();
             }
         }
@@ -132,5 +132,10 @@ public class RoomMapToDisplay {
             ManHinhChinh.jpnAreaMapRoom.revalidate();
             ManHinhChinh.jpnAreaMapRoom.repaint();
         }
+    }
+
+    public static void resetStatus(){
+        PhongDAO dao = new PhongDAO();
+        dao.updateMaTT3();
     }
 }
